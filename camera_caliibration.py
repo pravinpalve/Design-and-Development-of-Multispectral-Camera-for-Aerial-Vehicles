@@ -3,6 +3,9 @@ import numpy as np
 import glob
 import os
 
+##### Please README file for running this code without error #####
+
+
 # Termination criteria for corner subpixel accuracy
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
