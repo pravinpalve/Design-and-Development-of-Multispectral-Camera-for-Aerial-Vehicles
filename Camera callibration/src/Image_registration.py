@@ -70,7 +70,7 @@ target_height, target_width = 690, 690
 images = [image1, image2, image3, image4]
 
 # Match resolution 
-images = match_resolution(images, target_height, target_width)
+images = match_resolution(images, target_height, target_width, method="crop")
 
 # Ignore
 # print("Image0 shape: ", image1.shape)
