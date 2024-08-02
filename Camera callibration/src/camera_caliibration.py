@@ -132,14 +132,6 @@ os.makedirs(undistorted_dir_lens2, exist_ok=True)
 os.makedirs(undistorted_dir_lens3, exist_ok=True)
 os.makedirs(undistorted_dir_lens4, exist_ok=True)
 
-
-
-
-
-
-
-
-
 # Process and undistort images for each lens
 for fname1, fname2, fname3, fname4 in zip(images_lens1, images_lens2, images_lens3, images_lens4):
     img1 = cv2.imread(fname1)
