@@ -44,27 +44,13 @@ def match_resolution(images, target_height, target_width, method='pad'):
 
 ################################################################################################################################
 
-
 # Load your images (replace with actual paths)
-# image1 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\callibrated_images\cam0\7.jpg')
-# image2 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\callibrated_images\cam1\7.jpg')
-# image3 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\callibrated_images\cam2\7.jpg')
-# image4 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\callibrated_images\cam3\7.jpg')
-
-# Load your images (replace with actual paths)
-image1 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\NewCalibImgs\Cam0\7.jpg')
-image2 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\NewCalibImgs\Cam1\7.jpg')
-image3 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\NewCalibImgs\Cam2\7.jpg')
-image4 = cv2.imread(r'C:\Users\manal\Documents\Python\Camera_Callibration\NewCalibImgs\Cam3\7.jpg')
+image1 = cv2.imread(r'')
+image2 = cv2.imread(r'')
+image3 = cv2.imread(r'')
+image4 = cv2.imread(r'')
 
 ################################################################################################################################
-
-
-
-# print("Image0 shape: ", image1.shape)
-# print("Image1 shape: ", image2.shape)
-# print("Image2 shape: ", image3.shape)
-# print("Image3 shape: ", image4.shape)
 
 
 # # Just in case if we need conversion of colour format
