@@ -60,6 +60,21 @@ image4 = cv2.imread(r'')
 # image4 = cv2.cvtColor(image4, cv2.COLOR_BGR2RGB)
 
 
+
+### If you wnat to apply colour for each image then uncomment this #######
+# selected colour = blue
+image2[:,:,1] = 0 
+image2[:,:,2] = 0 
+# selected colour = green
+image3[:,:,0] = 0 
+image3[:,:,2] = 0 
+# selected colour = red
+image4[:,:,0] = 0 
+image4[:,:,1] = 0 
+###########################################################################
+
+
+
 ##@################## SET THE REQUIRED RESOLUTION HERE!!! ######################
 
 target_height, target_width = 690, 690
