@@ -1,18 +1,23 @@
 import cv2
 import numpy as np
 
-root = '/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles/CalibImgs'
+root = '/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles'
 
 for i in range(14):
 
-    img = cv2.imread(f'{root}/calib{i+1}.jpg')
+    img = cv2.imread(f'{root}/CalibImgs/calib{i+1}.jpg')
 
-    print(img.shape)
-
-    img0 = img[:,0:1280,:]
-    img1 = img[:,1280:2560,:]
-    img2 = img[:,2560:3840,:]
-    img3 = img[:,3840:5120,:]
+    print(f'img {i} : {img.shape}')
+    
+    img0 = img[:,240:1040,:]
+    img1 = img[:,1520:2320,:]
+    img2 = img[:,2800:3600,:]
+    img3 = img[:,4080:4880,:]
+    
+    M1 = cv2.getRotationMatrix2D(((img2.shape[1]-1)/2.0,(img2.shape[0]-1)/2.0),90,1)
+    img2 = cv2.warpAffine(img2,M1,(img2.shape[1],img2.shape[0]))
+    M2 = cv2.getRotationMatrix2D(((img3.shape[1]-1)/2.0,(img3.shape[0]-1)/2.0),180,1)
+    img3 = cv2.warpAffine(img3,M2,(img3.shape[1],img3.shape[0]))
 
     cv2.imwrite(f'{root}/NewCalibImgs/Cam0/{i+1}.jpg', img0)
     cv2.imwrite(f'{root}/NewCalibImgs/Cam1/{i+1}.jpg', img1)
