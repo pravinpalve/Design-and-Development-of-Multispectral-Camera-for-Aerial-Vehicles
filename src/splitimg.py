@@ -3,9 +3,10 @@ import numpy as np
 
 root = '/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles'
 
-for i in range(14):
+for i in range(3):
 
-    img = cv2.imread(f'{root}/CalibImgs/calib{i+1}.jpg')
+    #img = cv2.imread(f'{root}/CalibImgs/calib{i+1}.jpg')
+    img = cv2.imread(f'{root}/ImagesWithFilters/Original/newpic{i}.jpg')
 
     print(f'img {i} : {img.shape}')
     
@@ -19,10 +20,15 @@ for i in range(14):
     M2 = cv2.getRotationMatrix2D(((img3.shape[1]-1)/2.0,(img3.shape[0]-1)/2.0),180,1)
     img3 = cv2.warpAffine(img3,M2,(img3.shape[1],img3.shape[0]))
 
-    cv2.imwrite(f'{root}/NewCalibImgs/Cam0/{i+1}.jpg', img0)
+    '''cv2.imwrite(f'{root}/NewCalibImgs/Cam0/{i+1}.jpg', img0)
     cv2.imwrite(f'{root}/NewCalibImgs/Cam1/{i+1}.jpg', img1)
     cv2.imwrite(f'{root}/NewCalibImgs/Cam2/{i+1}.jpg', img2)
-    cv2.imwrite(f'{root}/NewCalibImgs/Cam3/{i+1}.jpg', img3)
+    cv2.imwrite(f'{root}/NewCalibImgs/Cam3/{i+1}.jpg', img3)'''
+    
+    cv2.imwrite(f'{root}/ImagesWithFilters/Individual/Cam0/{i}.jpg', img0)
+    cv2.imwrite(f'{root}/ImagesWithFilters/Individual/Cam1/{i}.jpg', img1)
+    cv2.imwrite(f'{root}/ImagesWithFilters/Individual/Cam2/{i}.jpg', img2)
+    cv2.imwrite(f'{root}/ImagesWithFilters/Individual/Cam3/{i}.jpg', img3)
 #cv2.imshow('img0',img0)
 #cv2.waitKey(0)
 #cv2.destroyAllWindows()
