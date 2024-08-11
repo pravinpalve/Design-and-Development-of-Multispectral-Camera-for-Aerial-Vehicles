@@ -102,7 +102,7 @@ reference_image = images[0]
 shifts = {
     'image2': {'x': -19, 'y': 27},  
     'image3': {'x': -30, 'y': 0},
-    'image4': {'x': -10, 'y': -3}
+    'image4': {'x': -22, 'y': 10}
 }
 
 ##########################################################################
@@ -116,8 +116,28 @@ translated_image4 = translate_image(images[3], shifts['image4']['x'], shifts['im
 
 
 # Registring images here!!!
-combined_image = np.zeros((target_height, target_width, 3), dtype=np.float32)
+#combined_image = np.zeros((target_height, target_width, 3), dtype=np.float32)
+
+reference_image = cv2.cvtColor(reference_image, cv2.COLOR_RGB2GRAY)
+translated_image2 = cv2.cvtColor(translated_image2, cv2.COLOR_RGB2GRAY)
+translated_image3 = cv2.cvtColor(translated_image3, cv2.COLOR_RGB2GRAY)
+translated_image4 = cv2.cvtColor(translated_image4, cv2.COLOR_RGB2GRAY)
+reference_image = np.expand_dims(reference_image, axis=-1)
+translated_image2 = np.expand_dims(translated_image2, axis=-1)
+translated_image3 = np.expand_dims(translated_image3, axis=-1)
+translated_image4 = np.expand_dims(translated_image4, axis=-1)
 translated_images = [reference_image, translated_image2, translated_image3, translated_image4]
+combined_image = np.concatenate((reference_image,translated_image2,translated_image3,translated_image4),axis=-1)
+combined_image = combined_image.astype(np.uint8)
+cv2.imwrite(f'/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles/Camera_callibration/callibrated_images/RegisteredImage.png', combined_image)
+
+print(combined_image.shape)
+print(combined_image)
+plt.figure(figsize=(6, 6))
+plt.imshow(combined_image.astype(np.uint8))
+plt.title('Combined Image')
+plt.axis('off')
+plt.show()
 
 
 # # Display all 4 images
@@ -139,22 +159,29 @@ translated_images = [reference_image, translated_image2, translated_image3, tran
 
 # Here the variable "no_of_imgs" is used to match two imges at a time 
 # First we match 2 images (base image and the second image) my changing shifts in x and y, once that is done then we set the value of "no_of_imgs" to 3 and match third image with the base image. We keep on doing this until all the images are completely fused/registered.
-
+'''combined_image = np.array([])
 k=0
-no_of_imgs = 4               # Select no of images 
+no_of_imgs = 1               # Select no of images 
 for img in translated_images:
     if(k >= no_of_imgs):                 
         break
     k += 1
-    combined_image += img / no_of_imgs
+    #combined_image += img / no_of_imgs
+    #combined_image = np.concatenate((reference_image,translated_image2,translated_image3,translated_image4),axis=-1)
+    reference_image = np.concatenate((reference_image,img))
+    
+    #combined_image = fusion(reference_image,translated_image2,translated_image3,translated_image4)
     
 
 # Convert combined image to uint8 for display
-combined_image = combined_image.astype(np.uint8)
-cv2.imwrite(f'/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles/Camera_callibration/callibrated_images/RegisteredImage.png', combined_image)
+#combined_image = combined_image.astype(np.uint8)
+print(reference_image.shape)
+print(reference_image)
+#cv2.imwrite(f'/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles/Camera_callibration/callibrated_images/RegisteredImage.png', combined_image)
 # Display the combined image
 plt.figure(figsize=(6, 6))
-plt.imshow(combined_image)
+plt.imshow(reference_image)
 plt.title('Combined Image')
 plt.axis('off')
 plt.show()
+'''
