@@ -100,8 +100,9 @@ reference_image = images[0]
 ################### ADUST SHIFTS FOR EACH IMAGES HERE ####################
 
 shifts = {
-    'image2': {'x': -19, 'y': 27},  
-    'image3': {'x': -30, 'y': 0},
+    'image1': {'x': 0, 'y': 5},
+    'image2': {'x': -19, 'y': 33},  
+    'image3': {'x': -31, 'y': 23},
     'image4': {'x': -22, 'y': 10}
 }
 
@@ -109,6 +110,7 @@ shifts = {
 
 
 # Translating Images
+translated_image1 = translate_image(images[0], shifts['image1']['x'], shifts['image1']['y'])
 translated_image2 = translate_image(images[1], shifts['image2']['x'], shifts['image2']['y'])
 translated_image3 = translate_image(images[2], shifts['image3']['x'], shifts['image3']['y'])
 translated_image4 = translate_image(images[3], shifts['image4']['x'], shifts['image4']['y'])
@@ -119,17 +121,19 @@ translated_image4 = translate_image(images[3], shifts['image4']['x'], shifts['im
 #combined_image = np.zeros((target_height, target_width, 3), dtype=np.float32)
 
 reference_image = cv2.cvtColor(reference_image, cv2.COLOR_RGB2GRAY)
+translated_image1 = cv2.cvtColor(translated_image1, cv2.COLOR_RGB2GRAY)
 translated_image2 = cv2.cvtColor(translated_image2, cv2.COLOR_RGB2GRAY)
 translated_image3 = cv2.cvtColor(translated_image3, cv2.COLOR_RGB2GRAY)
 translated_image4 = cv2.cvtColor(translated_image4, cv2.COLOR_RGB2GRAY)
 reference_image = np.expand_dims(reference_image, axis=-1)
+translated_image1 = np.expand_dims(translated_image1, axis=-1)
 translated_image2 = np.expand_dims(translated_image2, axis=-1)
 translated_image3 = np.expand_dims(translated_image3, axis=-1)
 translated_image4 = np.expand_dims(translated_image4, axis=-1)
 translated_images = [reference_image, translated_image2, translated_image3, translated_image4]
-combined_image = np.concatenate((reference_image,translated_image2,translated_image3,translated_image4),axis=-1)
+combined_image = np.concatenate((translated_image1,translated_image2,translated_image3, translated_image4),axis=-1)
 combined_image = combined_image.astype(np.uint8)
-cv2.imwrite(f'/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles/Camera_callibration/callibrated_images/RegisteredImage.png', combined_image)
+cv2.imwrite(f'/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles/Camera_callibration/callibrated_images/RegisteredImageNew.png', combined_image)
 
 print(combined_image.shape)
 print(combined_image)
@@ -139,7 +143,9 @@ plt.title('Combined Image')
 plt.axis('off')
 plt.show()
 
-
+root = '/Users/gokulmnambiar/Desktop/GitHubRepos/Design-and-Development-of-Multispectral-Camera-for-Aerial-Vehicles/Camera_callibration/callibrated_images'
+image_new = cv2.imread(f'{root}/RegisteredImage.png', cv2.IMREAD_UNCHANGED)
+print(image_new.shape)
 # # Display all 4 images
 # plt.subplot(2,2,1)
 # plt.imshow(image1)
